@@ -1,0 +1,149 @@
+{
+  "name": "Pre-Legal document template catalog",
+  "description": "Markdown legal document templates sourced from Common Paper GitHub repositories for later customization.",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "Templates are adapted from Common Paper standard agreements (https://commonpaper.com/standards/).",
+  "source_organization": {
+    "name": "Common Paper",
+    "github": "https://github.com/CommonPaper",
+    "website": "https://commonpaper.com"
+  },
+  "templates": [
+    {
+      "id": "mutual-nda",
+      "title": "Mutual Non-Disclosure Agreement",
+      "file": "templates/Mutual-NDA.md",
+      "related_files": ["templates/Mutual-NDA-coverpage.md"],
+      "source_repo": "https://github.com/CommonPaper/Mutual-NDA",
+      "source_files": [
+        "https://github.com/CommonPaper/Mutual-NDA/blob/main/Mutual-NDA.md",
+        "https://github.com/CommonPaper/Mutual-NDA/blob/main/Mutual-NDA-coverpage.md"
+      ],
+      "category": "confidentiality",
+      "description": "Mutual NDA standard terms allowing each party to disclose confidential information for an agreed purpose, used with a completed cover page."
+    },
+    {
+      "id": "mutual-nda-coverpage",
+      "title": "Mutual NDA Cover Page",
+      "file": "templates/Mutual-NDA-coverpage.md",
+      "related_files": ["templates/Mutual-NDA.md"],
+      "source_repo": "https://github.com/CommonPaper/Mutual-NDA",
+      "source_files": [
+        "https://github.com/CommonPaper/Mutual-NDA/blob/main/Mutual-NDA-coverpage.md"
+      ],
+      "category": "confidentiality",
+      "description": "Cover page variables for executing a Common Paper Mutual Non-Disclosure Agreement."
+    },
+    {
+      "id": "cloud-service-agreement",
+      "title": "Cloud Service Agreement",
+      "file": "templates/CSA.md",
+      "source_repo": "https://github.com/CommonPaper/CSA",
+      "source_files": [
+        "https://github.com/CommonPaper/CSA/blob/main/CSA.md"
+      ],
+      "category": "commercial",
+      "description": "Standard Cloud Service Agreement terms for SaaS and cloud vendor relationships."
+    },
+    {
+      "id": "service-level-agreement",
+      "title": "Service Level Agreement",
+      "file": "templates/sla.md",
+      "source_repo": "https://github.com/CommonPaper/SLA",
+      "source_files": [
+        "https://github.com/CommonPaper/SLA/blob/main/sla.md"
+      ],
+      "category": "commercial",
+      "description": "Service Level Agreement terms describing uptime commitments and related service metrics."
+    },
+    {
+      "id": "data-processing-agreement",
+      "title": "Data Processing Agreement",
+      "file": "templates/DPA.md",
+      "source_repo": "https://github.com/CommonPaper/DPA",
+      "source_files": [
+        "https://github.com/CommonPaper/DPA/blob/main/DPA.md"
+      ],
+      "category": "privacy",
+      "description": "Data Processing Agreement standard terms for processor and subprocessor relationships."
+    },
+    {
+      "id": "design-partner-agreement",
+      "title": "Design Partner Agreement",
+      "file": "templates/design-partner-agreement.md",
+      "source_repo": "https://github.com/CommonPaper/Design-Partner-Agreement",
+      "source_files": [
+        "https://github.com/CommonPaper/Design-Partner-Agreement/blob/main/design-partner-agreement.md"
+      ],
+      "category": "commercial",
+      "description": "Design Partner Agreement for early customer collaboration and feedback programs."
+    },
+    {
+      "id": "professional-services-agreement",
+      "title": "Professional Services Agreement",
+      "file": "templates/psa.md",
+      "source_repo": "https://github.com/CommonPaper/PSA",
+      "source_files": [
+        "https://github.com/CommonPaper/PSA/blob/main/psa.md"
+      ],
+      "category": "commercial",
+      "description": "Professional Services Agreement standard terms for SOW-based consulting and delivery work."
+    },
+    {
+      "id": "partnership-agreement",
+      "title": "Partnership Agreement",
+      "file": "templates/Partnership-Agreement.md",
+      "source_repo": "https://github.com/CommonPaper/Partnership-Agreement",
+      "source_files": [
+        "https://github.com/CommonPaper/Partnership-Agreement/blob/main/Partnership-Agreement.md"
+      ],
+      "category": "commercial",
+      "description": "Partnership Agreement standard terms for go-to-market and channel partnerships."
+    },
+    {
+      "id": "business-associate-agreement",
+      "title": "Business Associate Agreement",
+      "file": "templates/BAA.md",
+      "source_repo": "https://github.com/CommonPaper/BAA",
+      "source_files": [
+        "https://github.com/CommonPaper/BAA/blob/main/BAA.md"
+      ],
+      "category": "privacy",
+      "description": "Business Associate Agreement for HIPAA-related protected health information handling."
+    },
+    {
+      "id": "software-license-agreement",
+      "title": "Software License Agreement",
+      "file": "templates/Software-License-Agreement.md",
+      "source_repo": "https://github.com/CommonPaper/Software-License-Agreement",
+      "source_files": [
+        "https://github.com/CommonPaper/Software-License-Agreement/blob/main/Software-License-Agreement.md"
+      ],
+      "category": "commercial",
+      "description": "Software License Agreement standard terms for licensed software products."
+    },
+    {
+      "id": "pilot-agreement",
+      "title": "Pilot Agreement",
+      "file": "templates/Pilot-Agreement.md",
+      "source_repo": "https://github.com/CommonPaper/Pilot-Agreement",
+      "source_files": [
+        "https://github.com/CommonPaper/Pilot-Agreement/blob/main/Pilot-Agreement.md"
+      ],
+      "category": "commercial",
+      "description": "Pilot Agreement for limited-scope product evaluations and trials."
+    },
+    {
+      "id": "ai-addendum",
+      "title": "AI Addendum",
+      "file": "templates/AI-Addendum.md",
+      "source_repo": "https://github.com/CommonPaper/AI-Addendum",
+      "source_files": [
+        "https://github.com/CommonPaper/AI-Addendum/blob/main/AI-Addendum.md"
+      ],
+      "category": "addendum",
+      "description": "AI Addendum covering artificial intelligence and machine learning use cases alongside a primary agreement."
+    }
+  ]
+}
