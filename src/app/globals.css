@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0c2e2a;
+  --ink-soft: #1a4540;
+  --mist: #e8eef0;
+  --mist-deep: #d4e0e3;
+  --paper: #f7fafb;
+  --accent: #2f8f84;
+  --accent-deep: #1f6b63;
+  --highlight: #c8f0e8;
+  --line: rgba(12, 46, 42, 0.12);
+  --shadow: 0 24px 60px rgba(12, 46, 42, 0.12);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-figtree), system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-mist: var(--mist);
+  --color-mist-deep: var(--mist-deep);
+  --color-paper: var(--paper);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-highlight: var(--highlight);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  color: var(--ink);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(47, 143, 132, 0.22), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(26, 69, 64, 0.16), transparent 50%),
+    linear-gradient(165deg, #f3f7f8 0%, #e7eef1 45%, #dfe8eb 100%);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 70%;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(47, 143, 132, 0.18) 40%, transparent 70%),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 28px,
+      rgba(12, 46, 42, 0.035) 28px,
+      rgba(12, 46, 42, 0.035) 29px
+    );
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.hero-atmosphere::after {
+  content: "";
+  position: absolute;
+  right: -8%;
+  bottom: -25%;
+  width: min(58vw, 640px);
+  height: min(58vw, 640px);
+  border-radius: 40% 60% 55% 45%;
+  background: radial-gradient(circle at 30% 30%, rgba(200, 240, 232, 0.75), rgba(47, 143, 132, 0.18) 55%, transparent 70%);
+  animation: floatBlob 14s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 3%, 0) scale(1.04);
+  }
+}
+
+@keyframes floatBlob {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(-4%, -3%, 0) rotate(8deg);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: riseIn 0.8s ease-out both;
+}
+
+.rise-delay {
+  animation: riseIn 0.9s ease-out 0.15s both;
+}
+
+.rise-delay-2 {
+  animation: riseIn 1s ease-out 0.28s both;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.85rem;
+  color: var(--ink);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(47, 143, 132, 0.18);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+
+.doc-sheet {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.filled {
+  background: linear-gradient(transparent 60%, rgba(47, 143, 132, 0.18) 60%);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-atmosphere::before,
+  .hero-atmosphere::after,
+  .rise,
+  .rise-delay,
+  .rise-delay-2 {
+    animation: none !important;
+  }
+}
