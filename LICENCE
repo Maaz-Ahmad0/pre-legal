@@ -1,0 +1,29 @@
+Attribution for Common Paper legal templates
+============================================
+
+The Markdown files in the `templates/` directory are sourced from the
+Common Paper GitHub organization (https://github.com/CommonPaper) and the
+Common Paper standards site (https://commonpaper.com/standards/).
+
+Those agreements are released by Common Paper for free use and modification
+under the Creative Commons Attribution 4.0 International Licence (CC BY 4.0):
+
+  https://creativecommons.org/licenses/by/4.0/
+
+Full legal text of the licence:
+
+  https://creativecommons.org/licenses/by/4.0/legalcode
+
+You are free to share and adapt the material for any purpose, even
+commercially, provided you give appropriate credit, provide a link to the
+licence, and indicate if changes were made.
+
+Attribution notice
+------------------
+
+This project includes Common Paper standard agreement templates.
+Common Paper agreements © their respective authors / Common Paper,
+licensed under CC BY 4.0.
+
+See `catalog.json` for the mapping from each local template file to its
+upstream repository.
