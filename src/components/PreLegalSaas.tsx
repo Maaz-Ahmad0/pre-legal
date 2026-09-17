@@ -621,25 +621,25 @@ export function PreLegalSaas() {
                   style={{ width: "auto", marginTop: 0, padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
                   onClick={() => {
                     if (!activeDocument || !activeTemplate) return;
+                    const slug = activeDocument.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+                    downloadPdf(`${slug}.pdf`, activeTemplate.render(activeDocument.values));
+                  }}
+                >
+                  Download PDF
+                </button>
+                <button
+                  type="button"
+                  className="ghost-action"
+                  style={{ padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
+                  onClick={() => {
+                    if (!activeDocument || !activeTemplate) return;
                     const slug = activeDocument.title
                       .toLowerCase()
                       .replace(/[^a-z0-9]+/g, "-");
                     downloadMarkdown(`${slug}.md`, activeTemplate.render(activeDocument.values));
                   }}
                 >
-                  Download (.md)
-                </button>
-                <button
-                  type="button"
-                  className="primary-action"
-                  style={{ width: "auto", marginTop: 0, padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
-                  onClick={() => {
-                    if (!activeDocument || !activeTemplate) return;
-                    const slug = activeDocument.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-                    downloadPdf(`${slug}.pdf`, activeTemplate.render(activeDocument.values));
-                  }}
-                >
-                  Download (.pdf)
+                  Export Markdown
                 </button>
               </div>
             </div>
