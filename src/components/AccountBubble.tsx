@@ -1,102 +1,161 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-type Theme = "light" | "dark";
+export type Theme = "light" | "dark";
 
-type Props = {
-  userName?: string;
+export interface AccountBubbleProps {
+  user?: {
+    name?: string;
+    email?: string;
+    company?: string;
+  } | null;
   onSignOut: () => void;
-};
+  onOpenSettings?: () => void;
+}
 
 const STORAGE_KEY = "pre-legal-theme";
 
-export function AccountBubble({ userName, onSignOut }: Props) {
-  const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>("light");
-  const rootRef = useRef<HTMLDivElement>(null);
+export function AccountBubble({ user, onSignOut, onOpenSettings }: AccountBubbleProps) {
+  const [theme, setTheme] = React.useState<Theme>("light");
 
-  // Apply saved theme on first mount.
-  useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    const initial: Theme = stored === "dark" ? "dark" : "light";
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
+  React.useEffect(() => {
+    const saved = (window.localStorage.getItem(STORAGE_KEY) as Theme) || "light";
+    setTheme(saved);
+    applyTheme(saved);
   }, []);
 
-  // Close on outside click / Escape.
-  useEffect(() => {
-    function handleClick(event: MouseEvent) {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-    function handleKey(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("mousedown", handleClick);
-    document.addEventListener("keydown", handleKey);
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-      document.removeEventListener("keydown", handleKey);
-    };
-  }, []);
-
-  function applyTheme(next: Theme) {
+  const applyTheme = (next: Theme) => {
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
+    if (next === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     window.localStorage.setItem(STORAGE_KEY, next);
-  }
+  };
 
-  const initials = (userName || "PL").trim().slice(0, 2).toUpperCase();
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    applyTheme(next);
+  };
+
+  const displayName = user?.name || user?.email?.split("@")[0] || "User";
+  const initials = (displayName.trim().slice(0, 2) || "PL").toUpperCase();
 
   return (
-    <div ref={rootRef} className="fixed bottom-5 left-5 z-50">
-      {open && (
-        <div className="absolute bottom-14 left-0 w-56 rounded-xl border border-black/10 bg-white p-2 shadow-xl">
-          <p className="px-2 py-1 text-xs font-medium uppercase tracking-wide text-neutral-400">Theme</p>
-          <div className="mb-2 flex gap-1 px-2">
-            <button
-              type="button"
-              onClick={() => applyTheme("light")}
-              className={`flex-1 rounded-md px-2 py-1.5 text-sm transition ${
-                theme === "light" ? "bg-neutral-900 text-white" : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
-              }`}
+    <div className="fixed bottom-5 left-5 z-50">
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          render={
+            <Button
+              variant="outline"
+              aria-label="Account and theme menu"
+              className="h-11 w-11 rounded-full p-0 border-2 border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] shadow-xl hover:scale-105 transition-transform flex items-center justify-center font-bold text-xs"
             >
-              Light
-            </button>
-            <button
-              type="button"
-              onClick={() => applyTheme("dark")}
-              className={`flex-1 rounded-md px-2 py-1.5 text-sm transition ${
-                theme === "dark" ? "bg-neutral-900 text-white" : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
-              }`}
+              <span className="relative flex h-full w-full items-center justify-center">
+                {initials}
+                <span
+                  className={`absolute -top-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--panel)] ${
+                    theme === "dark" ? "bg-amber-400" : "bg-emerald-500"
+                  }`}
+                  title={`Theme: ${theme}`}
+                />
+              </span>
+            </Button>
+          }
+        />
+        <DropdownMenuContent className="w-56 mb-2" align="start" side="top">
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuItem className="flex flex-col items-start gap-0.5 pointer-events-none opacity-90">
+              <span className="font-semibold text-xs text-[var(--ink)]">{displayName}</span>
+              {user?.email && (
+                <span className="text-[11px] text-[var(--ink-soft)] truncate max-w-[12rem]">
+                  {user.email}
+                </span>
+              )}
+              {user?.company && (
+                <span className="text-[10px] text-[var(--accent)] font-medium">
+                  {user.company}
+                </span>
+              )}
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+
+          <DropdownMenuSeparator />
+
+          <DropdownMenuGroup>
+            {/* Theme switcher */}
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <span className="flex items-center gap-2">
+                  <span>{theme === "dark" ? "🌙" : "☀️"}</span>
+                  <span>Theme: {theme === "dark" ? "Dark" : "Light"}</span>
+                </span>
+              </DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem
+                    onClick={() => applyTheme("light")}
+                    className={theme === "light" ? "bg-neutral-100 dark:bg-neutral-800 font-semibold" : ""}
+                  >
+                    <span>☀️ Light Mode</span>
+                    {theme === "light" && <span>✓</span>}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => applyTheme("dark")}
+                    className={theme === "dark" ? "bg-neutral-100 dark:bg-neutral-800 font-semibold" : ""}
+                  >
+                    <span>🌙 Dark Mode</span>
+                    {theme === "dark" && <span>✓</span>}
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+
+            <DropdownMenuItem onClick={toggleTheme}>
+              <span>Toggle Mode</span>
+              <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+            </DropdownMenuItem>
+
+            {onOpenSettings && (
+              <DropdownMenuItem onClick={onOpenSettings}>
+                <span>AI / OpenRouter API</span>
+                <DropdownMenuShortcut>⌘,</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            )}
+          </DropdownMenuGroup>
+
+          <DropdownMenuSeparator />
+
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              onClick={onSignOut}
+              className="text-red-600 dark:text-red-400 hover:!bg-red-50 dark:hover:!bg-red-950/40 hover:!text-red-700"
             >
-              Dark
-            </button>
-          </div>
-          <div className="my-1 h-px bg-black/10" />
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              onSignOut();
-            }}
-            className="w-full rounded-md px-2 py-1.5 text-left text-sm text-red-600 transition hover:bg-red-50"
-          >
-            Sign out
-          </button>
-        </div>
-      )}
-      <button
-        type="button"
-        onClick={() => setOpen((current) => !current)}
-        aria-label="Account menu"
-        aria-expanded={open}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-sm font-semibold text-white shadow-lg transition hover:scale-105"
-      >
-        {initials}
-      </button>
+              <span>Log out</span>
+              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
