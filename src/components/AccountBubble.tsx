@@ -16,6 +16,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { CheckIcon, MoonIcon, SunIcon } from "@/components/ui/icons";
 
 export type Theme = "light" | "dark";
 
@@ -106,7 +107,7 @@ export function AccountBubble({ user, onSignOut, onOpenSettings }: AccountBubble
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <span className="flex items-center gap-2">
-                  <span>{theme === "dark" ? "🌙" : "☀️"}</span>
+                  {theme === "dark" ? <MoonIcon size={16} /> : <SunIcon size={16} />}
                   <span>Theme: {theme === "dark" ? "Dark" : "Light"}</span>
                 </span>
               </DropdownMenuSubTrigger>
@@ -116,15 +117,15 @@ export function AccountBubble({ user, onSignOut, onOpenSettings }: AccountBubble
                     onClick={() => applyTheme("light")}
                     className={theme === "light" ? "bg-neutral-100 dark:bg-neutral-800 font-semibold" : ""}
                   >
-                    <span>☀️ Light Mode</span>
-                    {theme === "light" && <span>✓</span>}
+                    <span className="flex items-center gap-2"><SunIcon size={16} /> Light Mode</span>
+                    {theme === "light" && <CheckIcon size={16} />}
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => applyTheme("dark")}
                     className={theme === "dark" ? "bg-neutral-100 dark:bg-neutral-800 font-semibold" : ""}
                   >
-                    <span>🌙 Dark Mode</span>
-                    {theme === "dark" && <span>✓</span>}
+                    <span className="flex items-center gap-2"><MoonIcon size={16} /> Dark Mode</span>
+                    {theme === "dark" && <CheckIcon size={16} />}
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { LegalTemplate, PreLegalDocument, legalTemplates, getTemplateById } from "@/lib/prelegal";
+import { ArrowRightIcon, ArrowUpIcon, SettingsIcon, XIcon, ZapIcon } from "@/components/ui/icons";
 
 interface Message {
   id: string;
@@ -206,7 +207,7 @@ export function DocumentChat({
           style={{ padding: "0.35rem 0.65rem", fontSize: "0.75rem" }}
           title="Configure OpenRouter Model & API Key"
         >
-          ⚙️ {customKey ? "API Key Set" : "API Config"}
+          <SettingsIcon size={14} /> {customKey ? "API Key Set" : "API Config"}
         </button>
       </div>
 
@@ -227,7 +228,7 @@ export function DocumentChat({
               onClick={() => setShowSettings(false)}
               style={{ background: "transparent", border: 0, cursor: "pointer", color: "var(--ink-soft)" }}
             >
-              ✕
+              <XIcon size={16} />
             </button>
           </div>
           <p style={{ margin: "0 0 0.65rem", color: "var(--ink-soft)", lineHeight: 1.5 }}>
@@ -306,7 +307,7 @@ export function DocumentChat({
                       marginBottom: "0.3rem",
                     }}
                   >
-                    ⚡ Populated Fields:
+                    <span className="inline-flex items-center gap-1"><ZapIcon size={14} /> Populated Fields:</span>
                   </span>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
                     {Object.entries(msg.fieldUpdates).map(([k, v]) => (
@@ -342,7 +343,7 @@ export function DocumentChat({
                     <strong>
                       {legalTemplates.find((temp) => temp.id === msg.suggestedTemplateId)?.name || "Supported Template"}
                     </strong>{" "}
-                    →
+                    <ArrowRightIcon size={14} />
                   </button>
                 </div>
               )}
@@ -429,7 +430,7 @@ export function DocumentChat({
             opacity: loading || !input.trim() ? 0.6 : 1,
           }}
         >
-          Send ↑
+          Send <ArrowUpIcon size={14} />
         </button>
       </form>
     </div>

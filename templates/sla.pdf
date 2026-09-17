@@ -1,0 +1,172 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+5 0 obj
+<< /Length 5047 >>
+stream
+BT /F2 15 Tf 54 780 Td (Service Level Agreement) Tj ET
+BT /F1 10 Tf 54 760 Td () Tj ET
+BT /F1 10 Tf 54 745 Td (1. <span class="header2" id="1">Uptime</span>) Tj ET
+BT /F1 10 Tf 54 730 Td (1. <span class="header3" id="1.1">Target Uptime.</span>  If there is a <span) Tj ET
+BT /F1 10 Tf 54 715 Td (class="orderformlink">Target Uptime</span>, <span class="coverpagelink">Provider</span> will) Tj ET
+BT /F1 10 Tf 54 700 Td (use commercially reasonable efforts to make the Cloud Service available for at least the) Tj ET
+BT /F1 10 Tf 54 685 Td (<span class="orderformlink">Target Uptime</span> as calculated each calendar month.) Tj ET
+BT /F1 10 Tf 54 670 Td (2. <span class="header3" id="1.2">Calculating Uptime.</span>  <span) Tj ET
+BT /F1 10 Tf 54 655 Td (class="coverpagelink">Provider</span> and <span class="coverpagelink">Customer</span> agree) Tj ET
+BT /F1 10 Tf 54 640 Td (to calculate availability of the Cloud Service as the total number of Available Minutes) Tj ET
+BT /F1 10 Tf 54 625 Td (minus the number of Downtime Minutes, divided by the total number of Available Minutes,) Tj ET
+BT /F1 10 Tf 54 610 Td (measured in a calendar month. If the <span class="orderformlink">Subscription Period</span>) Tj ET
+BT /F1 10 Tf 54 595 Td (includes a partial month, the numerator and denominator will only include the days that are) Tj ET
+BT /F1 10 Tf 54 580 Td (part of the <span class="orderformlink">Subscription Period</span> for that month.) Tj ET
+BT /F1 10 Tf 54 565 Td () Tj ET
+BT /F1 10 Tf 54 550 Td (2. <span class="header2" id="2">Response Time</span>) Tj ET
+BT /F1 10 Tf 54 535 Td (1. <span class="header3" id="2.1">Target Response Time.</span> If there is a <span) Tj ET
+BT /F1 10 Tf 54 520 Td (class="orderformlink">Target Response Time</span>, <span) Tj ET
+BT /F1 10 Tf 54 505 Td (class="coverpagelink">Provider</span> will use commercially reasonable efforts to respond to) Tj ET
+BT /F1 10 Tf 54 490 Td (support requests sent to the <span class="orderformlink">Support Channel</span> within the) Tj ET
+BT /F1 10 Tf 54 475 Td (<span class="orderformlink">Target Response Time</span>.) Tj ET
+BT /F1 10 Tf 54 460 Td (2. <span class="header3" id="2.2">Calculating Response Time.</span>  <span) Tj ET
+BT /F1 10 Tf 54 445 Td (class="coverpagelink">Provider</span> and <span class="coverpagelink">Customer</span> agree) Tj ET
+BT /F1 10 Tf 54 430 Td (to calculate <span class="coverpagelink">Provider?s</span> response time as the total time) Tj ET
+BT /F1 10 Tf 54 415 Td (between when <span class="coverpagelink">Customer</span> submits a support request to the) Tj ET
+BT /F1 10 Tf 54 400 Td (<span class="orderformlink">Support Channel</span> and when <span) Tj ET
+BT /F1 10 Tf 54 385 Td (class="coverpagelink">Provider</span> or <span class="coverpagelink">Provider?s</span>) Tj ET
+BT /F1 10 Tf 54 370 Td (support representative specifically acknowledges the request. An automated response is not a) Tj ET
+BT /F1 10 Tf 54 355 Td (specific acknowledgement for purposes of this SLA.) Tj ET
+BT /F1 10 Tf 54 340 Td () Tj ET
+BT /F1 10 Tf 54 325 Td (3. <span class="header2" id="3">Remedies</span>) Tj ET
+BT /F1 10 Tf 54 310 Td (1. <span class="header3" id="3.1">Service Credit.</span>  If there is a <span) Tj ET
+BT /F1 10 Tf 54 295 Td (class="orderformlink">Target Uptime</span> and Cloud Service availability falls below the) Tj ET
+BT /F1 10 Tf 54 280 Td (<span class="orderformlink">Target Uptime</span>, <span) Tj ET
+BT /F1 10 Tf 54 265 Td (class="coverpagelink">Customer</span> is eligible to receive an <span) Tj ET
+BT /F1 10 Tf 54 250 Td (class="orderformlink">Uptime Credit</span>. If there is a <span class="orderformlink">Target) Tj ET
+BT /F1 10 Tf 54 235 Td (Response Time</span> and neither <span class="coverpagelink">Provider</span> nor <span) Tj ET
+BT /F1 10 Tf 54 220 Td (class="coverpagelink">Provider?s</span> support representative acknowledge a support request) Tj ET
+BT /F1 10 Tf 54 205 Td (submitted to the <span class="orderformlink">Support Channel</span> within the <span) Tj ET
+BT /F1 10 Tf 54 190 Td (class="orderformlink">Target Response Time</span>, <span) Tj ET
+BT /F1 10 Tf 54 175 Td (class="coverpagelink">Customer</span> is eligible to receive a <span) Tj ET
+BT /F1 10 Tf 54 160 Td (class="orderformlink">Response Time Credit</span>. Service Credits only apply towards future) Tj ET
+BT /F1 10 Tf 54 145 Td (Cloud Service Fees owed by <span class="coverpagelink">Customer</span> to <span) Tj ET
+BT /F1 10 Tf 54 130 Td (class="coverpagelink">Provider</span>.) Tj ET
+BT /F1 10 Tf 54 115 Td (2. <span class="header3" id="3.2">Requesting A Service Credit.</span>  To receive a Service) Tj ET
+BT /F1 10 Tf 54 100 Td (Credit, <span class="coverpagelink">Customer</span> must notify <span) Tj ET
+BT /F1 10 Tf 54 85 Td (class="coverpagelink">Provider</span> within 7 days of the end of the month in which <span) Tj ET
+BT /F1 10 Tf 54 70 Td (class="coverpagelink">Customer</span> believes the Service Credit was earned, otherwise) Tj ET
+BT /F1 10 Tf 54 55 Td (Service Credit eligibility will expire for that month.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 5363 >>
+stream
+BT /F1 10 Tf 54 780 Td (a. For <span class="orderformlink" id="3.2.a">Uptime Credit</span>, <span) Tj ET
+BT /F1 10 Tf 54 765 Td (class="coverpagelink">Customer</span> must include information about when it was unable to) Tj ET
+BT /F1 10 Tf 54 750 Td (access the Cloud Service. <span class="coverpagelink">Customer</span> may be required to) Tj ET
+BT /F1 10 Tf 54 735 Td (provide additional details about its attempts to access the Cloud Service. If <span) Tj ET
+BT /F1 10 Tf 54 720 Td (class="coverpagelink">Provider</span> can verify Cloud Service unavailability in its) Tj ET
+BT /F1 10 Tf 54 705 Td (internal monitoring systems and the disruption does not qualify as Excluded Minutes or <span) Tj ET
+BT /F1 10 Tf 54 690 Td (class="orderformlink">Scheduled Downtime</span>, <span class="coverpagelink">Provider</span>) Tj ET
+BT /F1 10 Tf 54 675 Td (will calculate and issue the applicable <span class="orderformlink">Uptime Credit</span> on) Tj ET
+BT /F1 10 Tf 54 660 Td (<span class="coverpagelink">Customer?s</span> account to apply towards a future invoice.) Tj ET
+BT /F1 10 Tf 54 645 Td (b. For <span class="orderformlink" id="3.2.b">Response Time Credit</span>, <span) Tj ET
+BT /F1 10 Tf 54 630 Td (class="coverpagelink">Customer</span> must include information about when and how <span) Tj ET
+BT /F1 10 Tf 54 615 Td (class="coverpagelink">Customer</span> contacted <span class="coverpagelink">Provider</span>.) Tj ET
+BT /F1 10 Tf 54 600 Td (<span class="coverpagelink">Customer</span> may be required to provide additional details) Tj ET
+BT /F1 10 Tf 54 585 Td (about the related incident and its attempts to receive support. If <span) Tj ET
+BT /F1 10 Tf 54 570 Td (class="coverpagelink">Provider</span> can verify neither <span) Tj ET
+BT /F1 10 Tf 54 555 Td (class="coverpagelink">Provider</span> nor <span class="coverpagelink">Provider?s</span>) Tj ET
+BT /F1 10 Tf 54 540 Td (support representative responded to <span class="coverpagelink">Customer?s</span> support) Tj ET
+BT /F1 10 Tf 54 525 Td (request within the <span class="orderformlink">Target Response Time</span>, <span) Tj ET
+BT /F1 10 Tf 54 510 Td (class="coverpagelink">Provider</span> will calculate and issue the applicable <span) Tj ET
+BT /F1 10 Tf 54 495 Td (class="orderformlink">Response Time Credit</span> on <span) Tj ET
+BT /F1 10 Tf 54 480 Td (class="coverpagelink">Customer?s</span> account to apply towards a future invoice.) Tj ET
+BT /F1 10 Tf 54 465 Td (3. <span class="header3" id="3.3">Service Credit Limitations.</span>  Service Credits may) Tj ET
+BT /F1 10 Tf 54 450 Td (not be exchanged for, or converted to, monetary amounts. Service Credits do not earn) Tj ET
+BT /F1 10 Tf 54 435 Td (interest. Service Credits will not accumulate within a single <span) Tj ET
+BT /F1 10 Tf 54 420 Td (class="orderformlink">Subscription Period</span> in an amount more than 8% of Cloud Service) Tj ET
+BT /F1 10 Tf 54 405 Td (Fees for that <span class="orderformlink">Subscription Period</span>. Service Credits expire) Tj ET
+BT /F1 10 Tf 54 390 Td (when the applicable Order Form ends.) Tj ET
+BT /F1 10 Tf 54 375 Td (4. <span class="header3" id="3.4">Termination.</span>  If the Cloud Service does not meet) Tj ET
+BT /F1 10 Tf 54 360 Td (the <span class="orderformlink">Target Uptime</span> for two \(2\) out of any three \(3\)) Tj ET
+BT /F1 10 Tf 54 345 Td (consecutive months and <span class="coverpagelink">Customer</span> notified <span) Tj ET
+BT /F1 10 Tf 54 330 Td (class="coverpagelink">Provider</span> of the failures within 7 days of the end of each) Tj ET
+BT /F1 10 Tf 54 315 Td (impacted month, <span class="coverpagelink">Customer</span> may immediately terminate the) Tj ET
+BT /F1 10 Tf 54 300 Td (affected Order Form by giving written notice to <span class="coverpagelink">Provider</span>.) Tj ET
+BT /F1 10 Tf 54 285 Td (If <span class="coverpagelink">Customer</span> terminates an Order Form under this section,) Tj ET
+BT /F1 10 Tf 54 270 Td (<span class="coverpagelink">Provider</span> will pay to <span) Tj ET
+BT /F1 10 Tf 54 255 Td (class="coverpagelink">Customer</span> a prorated refund of prepaid fees for the remainder of) Tj ET
+BT /F1 10 Tf 54 240 Td (the <span class="orderformlink">Subscription Period</span>.) Tj ET
+BT /F1 10 Tf 54 225 Td (5. <span class="header3" id="3.5">Exclusive Remedy.</span>  This SLA describes <span) Tj ET
+BT /F1 10 Tf 54 210 Td (class="coverpagelink">Customer?s</span> exclusive remedy and <span) Tj ET
+BT /F1 10 Tf 54 195 Td (class="coverpagelink">Provider?s</span> entire liability for any failure of the Cloud) Tj ET
+BT /F1 10 Tf 54 180 Td (Service to meet the <span class="orderformlink">Target Uptime</span> and for any inability) Tj ET
+BT /F1 10 Tf 54 165 Td (to meet the <span class="orderformlink">Target Response Time</span>.) Tj ET
+BT /F1 10 Tf 54 150 Td () Tj ET
+BT /F1 10 Tf 54 135 Td (4. <span class="header2" id="4">Definitions</span>) Tj ET
+BT /F1 10 Tf 54 120 Td (1. <span id="4.1">"Available Minutes"</span>  means the total number of minutes in a) Tj ET
+BT /F1 10 Tf 54 105 Td (calendar month, minus Excluded Minutes and <span class="orderformlink">Scheduled) Tj ET
+BT /F1 10 Tf 54 90 Td (Downtime</span>.) Tj ET
+BT /F1 10 Tf 54 75 Td (2. <span id="4.2">"Downtime Minutes"</span> means the total number of minutes in a calendar) Tj ET
+BT /F1 10 Tf 54 60 Td (month when the Cloud Service is not available to <span) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 1767 >>
+stream
+BT /F1 10 Tf 54 780 Td (class="coverpagelink">Customer</span>, as confirmed by <span) Tj ET
+BT /F1 10 Tf 54 765 Td (class="coverpagelink">Provider?s</span> internal monitoring systems, minus Excluded Minutes) Tj ET
+BT /F1 10 Tf 54 750 Td (and <span class="orderformlink">Scheduled Downtime</span>.) Tj ET
+BT /F1 10 Tf 54 735 Td (3. <span id="4.3">"Excluded Minutes"</span> means when the Cloud Service is not available) Tj ET
+BT /F1 10 Tf 54 720 Td (because of \(a\) a Force Majeure Event; \(b\) general Internet connectivity issues; \(c\)) Tj ET
+BT /F1 10 Tf 54 705 Td (equipment or software made available by anyone other than <span) Tj ET
+BT /F1 10 Tf 54 690 Td (class="coverpagelink">Provider</span> and that is not within <span) Tj ET
+BT /F1 10 Tf 54 675 Td (class="coverpagelink">Provider?s</span> reasonable control; or \(d\) <span) Tj ET
+BT /F1 10 Tf 54 660 Td (class="coverpagelink">Customer?s</span> use of the Cloud Service in a manner not authorized) Tj ET
+BT /F1 10 Tf 54 645 Td (by the Agreement.) Tj ET
+BT /F1 10 Tf 54 630 Td (4. <span id="4.4">"Service Credit"</span> means the accrued <span) Tj ET
+BT /F1 10 Tf 54 615 Td (class="orderformlink">Uptime Credit</span> plus the accrued <span) Tj ET
+BT /F1 10 Tf 54 600 Td (class="orderformlink">Response Time Credit</span>.) Tj ET
+BT /F1 10 Tf 54 585 Td (5. <span id="4.5">"SLA"</span> means these SLA Standard Terms as incorporated into the) Tj ET
+BT /F1 10 Tf 54 570 Td (applicable Order Form.) Tj ET
+BT /F1 10 Tf 54 555 Td (6. <span id="4.6">"SLA Standard Terms"</span> means these Common Paper Service Level) Tj ET
+BT /F1 10 Tf 54 540 Td (Agreement Standard Terms Version 2.0, which are posted at) Tj ET
+BT /F1 10 Tf 54 525 Td (<https://commonpaper.com/standards/service-level-agreement/2.0/>.) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000206 00000 n 
+0000000277 00000 n 
+0000005376 00000 n 
+0000005512 00000 n 
+0000010927 00000 n 
+0000011063 00000 n 
+0000012882 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+13019
+%%EOF

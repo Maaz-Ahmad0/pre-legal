@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { ChevronRightIcon } from "@/components/ui/icons";
 
 interface DropdownContextValue {
   open: boolean;
@@ -303,7 +304,9 @@ export function DropdownMenuSubTrigger({
       className={`flex cursor-pointer select-none items-center justify-between rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-neutral-100 hover:text-[var(--ink)] dark:hover:bg-neutral-800 ${className}`}
     >
       <span>{children}</span>
-      <span className="text-xs text-[var(--ink-soft)]">▶</span>
+      <span className="ml-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--paper)] text-[var(--ink-soft)]">
+        <ChevronRightIcon size={14} />
+      </span>
     </div>
   );
 }

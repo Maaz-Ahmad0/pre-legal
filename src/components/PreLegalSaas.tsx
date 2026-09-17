@@ -12,6 +12,14 @@ import {
 import { supabase } from "@/lib/supabase";
 import { DocumentChat } from "@/components/DocumentChat";
 import { AccountBubble } from "@/components/AccountBubble";
+import {
+  AlertTriangleIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  FileTextIcon,
+  MessageCircleIcon,
+} from "@/components/ui/icons";
+import { jsPDF } from "jspdf";
 
 type User = {
   name: string;
@@ -27,6 +35,32 @@ function downloadMarkdown(filename: string, content: string) {
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+function downloadPdf(filename: string, content: string) {
+  const pdf = new jsPDF({ unit: "pt", format: "a4" });
+  const margin = 54;
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const lineHeight = 15;
+  let y = 62;
+
+  pdf.setFont("times", "normal");
+  pdf.setFontSize(10);
+  content.split(/\r?\n/).forEach((sourceLine) => {
+    const isHeading = /^#{1,6}\s/.test(sourceLine);
+    const line = sourceLine.replace(/^#{1,6}\s*/, "").replace(/[*_`]/g, "").trimEnd();
+    pdf.setFont("times", isHeading ? "bold" : "normal");
+    pdf.setFontSize(isHeading ? 15 : 10);
+    const lines = pdf.splitTextToSize(line || " ", pageWidth - margin * 2);
+    if (y + lines.length * lineHeight > pageHeight - margin) {
+      pdf.addPage();
+      y = 62;
+    }
+    pdf.text(lines, margin, y);
+    y += lines.length * lineHeight + (isHeading ? 7 : 3);
+  });
+  pdf.save(filename);
 }
 
 export function PreLegalSaas() {
@@ -410,7 +444,7 @@ export function PreLegalSaas() {
               }}
             >
               <div style={{ fontWeight: 800, color: "#b45309", marginBottom: "0.35rem" }}>
-                ⚠️ Notice: Unsupported Document Type
+                <AlertTriangleIcon size={16} /> Notice: Unsupported Document Type
               </div>
               <p style={{ margin: "0 0 0.5rem", color: "var(--ink)" }}>
                 {searchMatch.unsupportedInfo.explanation}
@@ -429,7 +463,7 @@ export function PreLegalSaas() {
                     className="primary-action"
                     style={{ width: "auto", marginTop: 0, padding: "0.4rem 0.85rem", fontSize: "0.78rem" }}
                   >
-                    Start Closest: {searchMatch.template.name} →
+                    Start Closest: {searchMatch.template.name} <ArrowRightIcon size={14} />
                   </button>
                 )}
               </div>
@@ -450,7 +484,7 @@ export function PreLegalSaas() {
                     window.location.hash = "editor";
                   }}
                 >
-                  Draft with AI →
+                  Draft with AI <ArrowRightIcon size={14} />
                 </button>
               </article>
             ))}
@@ -475,7 +509,7 @@ export function PreLegalSaas() {
                     onClick={() => setEditorMode("chat")}
                     style={{ padding: "0.4rem 0.65rem", fontSize: "0.75rem" }}
                   >
-                    💬 AI Chat
+                    <MessageCircleIcon size={14} /> AI Chat
                   </button>
                   <button
                     type="button"
@@ -483,7 +517,7 @@ export function PreLegalSaas() {
                     onClick={() => setEditorMode("form")}
                     style={{ padding: "0.4rem 0.65rem", fontSize: "0.75rem" }}
                   >
-                    📝 Form
+                    <FileTextIcon size={14} /> Form
                   </button>
                 </div>
 
@@ -579,7 +613,7 @@ export function PreLegalSaas() {
                   onClick={handleCopy}
                   style={{ padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
                 >
-                  {copied ? "✓ Copied" : "Copy Markdown"}
+                  {copied ? <><CheckIcon size={14} /> Copied</> : "Copy Markdown"}
                 </button>
                 <button
                   type="button"
@@ -594,6 +628,18 @@ export function PreLegalSaas() {
                   }}
                 >
                   Download (.md)
+                </button>
+                <button
+                  type="button"
+                  className="primary-action"
+                  style={{ width: "auto", marginTop: 0, padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
+                  onClick={() => {
+                    if (!activeDocument || !activeTemplate) return;
+                    const slug = activeDocument.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+                    downloadPdf(`${slug}.pdf`, activeTemplate.render(activeDocument.values));
+                  }}
+                >
+                  Download (.pdf)
                 </button>
               </div>
             </div>
