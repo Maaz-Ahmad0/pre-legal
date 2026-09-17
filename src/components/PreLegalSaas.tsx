@@ -62,7 +62,6 @@ export function PreLegalSaas() {
       try {
         const { data } = await supabase.auth.getUser();
         if (!mounted || !data.user) {
-          // If not authenticated, create a default local document so the app is immediately usable!
           if (documents.length === 0) {
             const defaultDoc = createDocument(legalTemplates[0]);
             setDocuments([defaultDoc]);
@@ -92,7 +91,6 @@ export function PreLegalSaas() {
           setDocuments(parsed);
           setActiveId(parsed[0]?.id ?? "");
         } else {
-          // Initialize with default template
           const defaultDoc = createDocument(legalTemplates[0]);
           setDocuments([defaultDoc]);
           setActiveId(defaultDoc.id);
@@ -245,81 +243,87 @@ export function PreLegalSaas() {
           </div>
         </section>
 
-        <div className="flex flex-col justify-center items-center p-6">
-          <form action={login} className="auth-panel w-full max-w-md">
-            <div className="segmented">
-              <button
-                type="button"
-                className={authMode === "signup" ? "active" : ""}
-                onClick={() => setAuthMode("signup")}
-              >
-                Sign up
-              </button>
-              <button
-                type="button"
-                className={authMode === "signin" ? "active" : ""}
-                onClick={() => setAuthMode("signin")}
-              >
-                Sign in
-              </button>
-            </div>
-            <h2>{authMode === "signup" ? "Create workspace" : "Welcome back"}</h2>
-            <label className="label" htmlFor="name">
-              Name
-            </label>
-            <input className="field" id="name" name="name" placeholder="Maaz Ahmad" />
-            <label className="label" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="field"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="maaz@example.com"
-              required
-            />
-            <label className="label" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="field"
-              id="password"
-              name="password"
-              type="password"
-              minLength={6}
-              required
-            />
-            <label className="label" htmlFor="company">
-              Company
-            </label>
-            <input className="field" id="company" name="company" placeholder="Pre-Legal Inc." />
-            <button className="primary-action" type="submit">
-              Continue to workspace
+        <form action={login} className="auth-panel">
+          <div className="segmented">
+            <button
+              type="button"
+              className={authMode === "signup" ? "active" : ""}
+              onClick={() => setAuthMode("signup")}
+            >
+              Sign up
             </button>
-            {authMessage && (
-              <p className="text-sm text-red-600 mt-2" role="alert">
-                {authMessage}
-              </p>
-            )}
+            <button
+              type="button"
+              className={authMode === "signin" ? "active" : ""}
+              onClick={() => setAuthMode("signin")}
+            >
+              Sign in
+            </button>
+          </div>
+          <h2>{authMode === "signup" ? "Create workspace" : "Welcome back"}</h2>
+          <label className="label" htmlFor="name">
+            Name
+          </label>
+          <input className="field" id="name" name="name" placeholder="Maaz Ahmad" />
+          <label className="label" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="field"
+            id="email"
+            name="email"
+            type="email"
+            placeholder="maaz@example.com"
+            required
+          />
+          <label className="label" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="field"
+            id="password"
+            name="password"
+            type="password"
+            minLength={6}
+            required
+          />
+          <label className="label" htmlFor="company">
+            Company
+          </label>
+          <input className="field" id="company" name="company" placeholder="Pre-Legal Inc." />
+          <button className="primary-action" type="submit">
+            Continue to workspace
+          </button>
+          {authMessage && (
+            <p className="text-sm text-red-600 mt-2" role="alert">
+              {authMessage}
+            </p>
+          )}
 
-            <div className="mt-4 pt-4 border-t border-[var(--line)] text-center">
-              <button
-                type="button"
-                onClick={() =>
-                  setUser({
-                    name: "Legal Guest",
-                    email: "guest@pre-legal.internal",
-                    company: "Pre-Legal Ops",
-                  })
-                }
-                className="text-xs text-[var(--accent)] hover:underline font-medium"
-              >
-                Explore workspace as Guest →
-              </button>
-            </div>
-          </form>
-        </div>
+          <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--line)", textAlign: "center" }}>
+            <button
+              type="button"
+              onClick={() =>
+                setUser({
+                  name: "Legal Guest",
+                  email: "guest@pre-legal.internal",
+                  company: "Pre-Legal Ops",
+                })
+              }
+              style={{
+                background: "transparent",
+                border: 0,
+                color: "var(--accent)",
+                fontSize: "0.82rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+            >
+              Explore workspace as Guest →
+            </button>
+          </div>
+        </form>
 
         {/* Bottom Left Account and Theme Bubble */}
         <AccountBubble user={null} onSignOut={() => setUser(null)} />
@@ -328,7 +332,7 @@ export function PreLegalSaas() {
   }
 
   return (
-    <main className="app-shell relative">
+    <main className="app-shell">
       {/* Sidebar */}
       <aside className="sidebar">
         <div>
@@ -336,28 +340,29 @@ export function PreLegalSaas() {
           <p className="workspace-name">{user.company}</p>
         </div>
         <nav>
-          <a href="#chat-editor" className="font-semibold text-[var(--accent)]">
-            💬 AI Drafting Chat
-          </a>
-          <a href="#templates">📚 All {legalTemplates.length} Templates</a>
-          <a href="#documents">📄 Saved Documents</a>
+          <a href="#editor">Editor</a>
+          <a href="#templates">Templates</a>
+          <a href="#documents">Documents</a>
         </nav>
-        <div className="pt-4 border-t border-[var(--line)]">
-          <div className="text-xs text-[var(--ink-soft)] mb-2">Workspace User</div>
-          <div className="text-xs font-semibold truncate">{user.name || user.email}</div>
-        </div>
+        <button
+          className="ghost-action"
+          type="button"
+          onClick={() => {
+            void supabase.auth.signOut().then(() => setUser(null));
+          }}
+        >
+          Sign out
+        </button>
       </aside>
 
       {/* Main Workspace */}
-      <section className="workspace pb-24">
+      <section className="workspace">
         <header className="topbar">
           <div>
             <p className="eyebrow">Legal Ops Workspace</p>
             <h1>Pre-Legal Document Automation</h1>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="user-pill">{user.name || user.email}</div>
-          </div>
+          <div className="user-pill">{user.name || user.email}</div>
         </header>
 
         {authMessage && (
@@ -365,7 +370,7 @@ export function PreLegalSaas() {
             {authMessage}
           </p>
         )}
-        {saving && <p className="text-xs text-[var(--accent)] animate-pulse mb-2">Saving document…</p>}
+        {saving && <p className="text-xs text-ink-soft mb-2">Saving document…</p>}
 
         {/* Metric Grid */}
         <div className="metric-grid">
@@ -377,218 +382,52 @@ export function PreLegalSaas() {
           ))}
         </div>
 
-        {/* AI Drafting & Live Preview Section */}
-        <section id="chat-editor" className="panel mb-8">
-          <div className="panel-heading mb-4">
-            <div>
-              <p className="eyebrow">Interactive Legal Creation</p>
-              <h2>
-                {activeDocument ? activeDocument.title : "Free-form AI Legal Drafting"}
-              </h2>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* Mode toggle */}
-              <div className="inline-flex rounded-lg border border-[var(--line)] bg-[var(--paper)] p-0.5 text-xs">
-                <button
-                  type="button"
-                  onClick={() => setEditorMode("chat")}
-                  className={`px-3 py-1.5 rounded-md font-semibold transition ${
-                    editorMode === "chat"
-                      ? "bg-[var(--panel)] text-[var(--ink)] shadow-xs"
-                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
-                  }`}
-                >
-                  💬 Free-Form AI Chat
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditorMode("form")}
-                  className={`px-3 py-1.5 rounded-md font-semibold transition ${
-                    editorMode === "form"
-                      ? "bg-[var(--panel)] text-[var(--ink)] shadow-xs"
-                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
-                  }`}
-                >
-                  📝 Manual Fields ({activeTemplate?.fields.length || 0})
-                </button>
-              </div>
-
-              {activeDocument && (
-                <select
-                  className="field status-field !py-1.5 text-xs font-semibold"
-                  value={activeDocument.status}
-                  onChange={(event) =>
-                    updateDocument({
-                      status: event.target.value as PreLegalDocument["status"],
-                    })
-                  }
-                >
-                  <option>Draft</option>
-                  <option>Review</option>
-                  <option>Ready</option>
-                </select>
-              )}
-            </div>
-          </div>
-
-          <div className="document-layout items-stretch gap-4">
-            {/* Left Side: Free-form AI Chat or Manual Form Fields */}
-            <div className="flex flex-col min-h-[580px] max-h-[720px]">
-              {editorMode === "chat" ? (
-                <DocumentChat
-                  activeDocument={activeDocument}
-                  activeTemplate={activeTemplate}
-                  onUpdateDocument={updateDocument}
-                  onSelectTemplate={startDocument}
-                  openRouterApiKey={openRouterApiKey}
-                  onUpdateApiKey={handleUpdateApiKey}
-                  openRouterModel={openRouterModel}
-                />
-              ) : (
-                /* Manual Form view fallback */
-                <div className="flex-1 overflow-y-auto p-4 border border-[var(--line)] rounded-xl bg-[var(--panel)]">
-                  <div className="mb-4 pb-3 border-b border-[var(--line)] flex items-center justify-between">
-                    <div>
-                      <h3 className="font-semibold text-sm">Direct Field Inputs</h3>
-                      <p className="text-xs text-[var(--ink-soft)]">
-                        Fields populate automatically through the AI chat, or you can edit them directly here.
-                      </p>
-                    </div>
-                  </div>
-
-                  {activeDocument && activeTemplate ? (
-                    <form className="form-grid" onSubmit={(e) => e.preventDefault()}>
-                      <label className="full">
-                        <span className="label">Document title</span>
-                        <input
-                          className="field"
-                          value={activeDocument.title}
-                          onChange={(e) => updateDocument({ title: e.target.value })}
-                        />
-                      </label>
-                      {activeTemplate.fields.map((field) => (
-                        <label
-                          className={field.type === "textarea" ? "full" : ""}
-                          key={field.id}
-                        >
-                          <span className="label">
-                            {field.label} {field.required && <span className="text-red-500">*</span>}
-                          </span>
-                          {field.type === "textarea" ? (
-                            <textarea
-                              className="field"
-                              value={activeDocument.values[field.id] ?? ""}
-                              placeholder={field.placeholder}
-                              onChange={(e) => updateValue(field.id, e.target.value)}
-                            />
-                          ) : field.type === "select" ? (
-                            <select
-                              className="field"
-                              value={activeDocument.values[field.id] ?? ""}
-                              onChange={(e) => updateValue(field.id, e.target.value)}
-                            >
-                              {field.options?.map((opt) => (
-                                <option key={opt}>{opt}</option>
-                              ))}
-                            </select>
-                          ) : (
-                            <input
-                              className="field"
-                              type={field.type}
-                              value={activeDocument.values[field.id] ?? ""}
-                              placeholder={field.placeholder}
-                              onChange={(e) => updateValue(field.id, e.target.value)}
-                            />
-                          )}
-                        </label>
-                      ))}
-                    </form>
-                  ) : (
-                    <div className="empty-state">No document selected.</div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Right Side: Live Generated Markdown Preview */}
-            <div className="flex flex-col min-h-[580px] max-h-[720px] rounded-xl border border-[var(--line)] bg-[var(--panel)] p-4 shadow-sm">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--line)]">
-                <div>
-                  <p className="eyebrow">Live Preview</p>
-                  <h3 className="font-semibold text-sm">
-                    {activeTemplate ? activeTemplate.name : "Agreement Draft"}
-                  </h3>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={handleCopy}
-                    className="px-3 py-1.5 text-xs font-semibold rounded-md border border-[var(--line)] hover:bg-[var(--paper)] transition"
-                  >
-                    {copied ? "✓ Copied!" : "📋 Copy Markdown"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (!activeDocument || !activeTemplate) return;
-                      const slug = activeDocument.title
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]+/g, "-");
-                      downloadMarkdown(`${slug}.md`, activeTemplate.render(activeDocument.values));
-                    }}
-                    className="px-3 py-1.5 text-xs font-semibold rounded-md bg-[var(--accent)] text-white hover:bg-[var(--accent-deep)] transition"
-                  >
-                    ⬇ Download (.md)
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex-1 overflow-auto rounded-lg border border-[var(--line)] bg-[var(--paper)] p-4 font-mono text-xs leading-relaxed text-[var(--ink)]">
-                <pre className="whitespace-pre-wrap font-inherit">
-                  {activeTemplate && activeDocument
-                    ? activeTemplate.render(activeDocument.values)
-                    : "Pick or describe a template to generate your document."}
-                </pre>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Template Library with Support for All 12 Document Types */}
-        <section id="templates" className="panel mb-8">
-          <div className="panel-heading mb-4">
+        <section id="templates" className="panel">
+          <div className="panel-heading">
             <div>
-              <p className="eyebrow">Complete Template Library ({legalTemplates.length} Supported)</p>
+              <p className="eyebrow">Template Library ({legalTemplates.length} Supported)</p>
               <h2>Every Document We Have Templates For</h2>
             </div>
-            <div className="w-full max-w-sm">
-              <input
-                className="field search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search templates (or try unsupported ones)..."
-              />
-            </div>
+            <input
+              className="field search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search templates (or try unsupported ones)..."
+            />
           </div>
 
-          {/* Unsupported Document Checker Alert */}
+          {/* Unsupported Document Checker Notice */}
           {searchMatch && !searchMatch.isSupported && searchMatch.unsupportedInfo && (
-            <div className="mb-6 p-4 rounded-xl border border-amber-300 dark:border-amber-700/60 bg-amber-50 dark:bg-amber-950/30 text-[var(--ink)] text-sm space-y-2">
-              <div className="flex items-center gap-2 font-bold text-amber-800 dark:text-amber-400">
-                <span>⚠️</span>
-                <span>Document Notice: Unsupported Document Type</span>
+            <div
+              style={{
+                marginBottom: "1.25rem",
+                padding: "1rem 1.25rem",
+                borderRadius: "0.5rem",
+                border: "1px solid #f59e0b",
+                background: "rgba(245, 158, 11, 0.08)",
+                fontSize: "0.88rem",
+              }}
+            >
+              <div style={{ fontWeight: 800, color: "#b45309", marginBottom: "0.35rem" }}>
+                ⚠️ Notice: Unsupported Document Type
               </div>
-              <p>{searchMatch.unsupportedInfo.explanation}</p>
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                <span className="text-xs text-[var(--ink-soft)] font-medium">
+              <p style={{ margin: "0 0 0.5rem", color: "var(--ink)" }}>
+                {searchMatch.unsupportedInfo.explanation}
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.75rem" }}>
+                <span style={{ color: "var(--ink-soft)", fontSize: "0.8rem" }}>
                   {searchMatch.unsupportedInfo.suggestedAction}
                 </span>
                 {searchMatch.template && (
                   <button
                     type="button"
-                    onClick={() => startDocument(searchMatch.template!)}
-                    className="px-3 py-1.5 rounded-md bg-[var(--accent)] text-white text-xs font-semibold hover:bg-[var(--accent-deep)] transition"
+                    onClick={() => {
+                      startDocument(searchMatch.template!);
+                      window.location.hash = "editor";
+                    }}
+                    className="primary-action"
+                    style={{ width: "auto", marginTop: 0, padding: "0.4rem 0.85rem", fontSize: "0.78rem" }}
                   >
                     Start Closest: {searchMatch.template.name} →
                   </button>
@@ -603,24 +442,166 @@ export function PreLegalSaas() {
                 <span>{template.category}</span>
                 <h3>{template.name}</h3>
                 <p>{template.description}</p>
-                <div className="mt-3 flex items-center justify-between pt-3 border-t border-[var(--line)]">
-                  <span className="text-[11px] text-[var(--ink-soft)]">
-                    {template.fields.length} key fields
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      startDocument(template);
-                      setEditorMode("chat");
-                      window.location.hash = "chat-editor";
-                    }}
-                    className="px-3 py-1.5 text-xs font-semibold"
-                  >
-                    Draft with AI →
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    startDocument(template);
+                    setEditorMode("chat");
+                    window.location.hash = "editor";
+                  }}
+                >
+                  Draft with AI →
+                </button>
               </article>
             ))}
+          </div>
+        </section>
+
+        {/* Document Editor & Live Preview Section */}
+        <section className="document-layout" id="editor">
+          {/* Left: Free-form AI Chat or Manual Form */}
+          <div className="panel editor-panel">
+            <div className="panel-heading">
+              <div>
+                <p className="eyebrow">Document Editor</p>
+                <h2>{activeDocument ? activeDocument.title : "Choose a template"}</h2>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                {/* Switch between Free-form Chat and Direct Form */}
+                <div className="segmented" style={{ margin: 0, padding: "0.2rem" }}>
+                  <button
+                    type="button"
+                    className={editorMode === "chat" ? "active" : ""}
+                    onClick={() => setEditorMode("chat")}
+                    style={{ padding: "0.4rem 0.65rem", fontSize: "0.75rem" }}
+                  >
+                    💬 AI Chat
+                  </button>
+                  <button
+                    type="button"
+                    className={editorMode === "form" ? "active" : ""}
+                    onClick={() => setEditorMode("form")}
+                    style={{ padding: "0.4rem 0.65rem", fontSize: "0.75rem" }}
+                  >
+                    📝 Form
+                  </button>
+                </div>
+
+                {activeDocument && (
+                  <select
+                    className="field status-field"
+                    style={{ padding: "0.45rem", fontSize: "0.78rem" }}
+                    value={activeDocument.status}
+                    onChange={(event) =>
+                      updateDocument({
+                        status: event.target.value as PreLegalDocument["status"],
+                      })
+                    }
+                  >
+                    <option>Draft</option>
+                    <option>Review</option>
+                    <option>Ready</option>
+                  </select>
+                )}
+              </div>
+            </div>
+
+            {editorMode === "chat" ? (
+              <DocumentChat
+                activeDocument={activeDocument}
+                activeTemplate={activeTemplate}
+                onUpdateDocument={updateDocument}
+                onSelectTemplate={startDocument}
+                openRouterApiKey={openRouterApiKey}
+                onUpdateApiKey={handleUpdateApiKey}
+                openRouterModel={openRouterModel}
+              />
+            ) : activeDocument && activeTemplate ? (
+              <form className="form-grid" onSubmit={(event) => event.preventDefault()}>
+                <label className="full">
+                  <span className="label">Document title</span>
+                  <input
+                    className="field"
+                    value={activeDocument.title}
+                    onChange={(event) => updateDocument({ title: event.target.value })}
+                  />
+                </label>
+                {activeTemplate.fields.map((field) => (
+                  <label className={field.type === "textarea" ? "full" : ""} key={field.id}>
+                    <span className="label">
+                      {field.label} {field.required && "*"}
+                    </span>
+                    {field.type === "textarea" ? (
+                      <textarea
+                        className="field"
+                        value={activeDocument.values[field.id] ?? ""}
+                        placeholder={field.placeholder}
+                        onChange={(event) => updateValue(field.id, event.target.value)}
+                      />
+                    ) : field.type === "select" ? (
+                      <select
+                        className="field"
+                        value={activeDocument.values[field.id] ?? ""}
+                        onChange={(event) => updateValue(field.id, event.target.value)}
+                      >
+                        {field.options?.map((option) => (
+                          <option key={option}>{option}</option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        className="field"
+                        type={field.type}
+                        value={activeDocument.values[field.id] ?? ""}
+                        placeholder={field.placeholder}
+                        onChange={(event) => updateValue(field.id, event.target.value)}
+                      />
+                    )}
+                  </label>
+                ))}
+              </form>
+            ) : (
+              <div className="empty-state">Pick a template to create your first document.</div>
+            )}
+          </div>
+
+          {/* Right: Live Preview */}
+          <div className="panel preview-panel">
+            <div className="panel-heading">
+              <div>
+                <p className="eyebrow">Live Preview</p>
+                <h2>Generated draft</h2>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <button
+                  type="button"
+                  className="ghost-action"
+                  onClick={handleCopy}
+                  style={{ padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
+                >
+                  {copied ? "✓ Copied" : "Copy Markdown"}
+                </button>
+                <button
+                  type="button"
+                  className="primary-action"
+                  style={{ width: "auto", marginTop: 0, padding: "0.45rem 0.85rem", fontSize: "0.78rem" }}
+                  onClick={() => {
+                    if (!activeDocument || !activeTemplate) return;
+                    const slug = activeDocument.title
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-");
+                    downloadMarkdown(`${slug}.md`, activeTemplate.render(activeDocument.values));
+                  }}
+                >
+                  Download (.md)
+                </button>
+              </div>
+            </div>
+            <pre>
+              {activeTemplate && activeDocument
+                ? activeTemplate.render(activeDocument.values)
+                : "No document selected."}
+            </pre>
           </div>
         </section>
 
@@ -628,51 +609,36 @@ export function PreLegalSaas() {
         <section id="documents" className="panel">
           <div className="panel-heading">
             <div>
-              <p className="eyebrow">Saved Documents</p>
-              <h2>Recent Work ({documents.length})</h2>
+              <p className="eyebrow">Saved documents</p>
+              <h2>Recent work</h2>
             </div>
           </div>
           <div className="document-list">
             {documents.map((doc) => (
               <button
-                className={
-                  doc.id === activeDocument?.id ? "document-row selected" : "document-row"
-                }
+                className={doc.id === activeDocument?.id ? "document-row selected" : "document-row"}
                 key={doc.id}
                 type="button"
                 onClick={() => {
                   setActiveId(doc.id);
-                  window.location.hash = "chat-editor";
+                  window.location.hash = "editor";
                 }}
               >
                 <div>
-                  <span className="font-semibold block">{doc.title}</span>
-                  <small className="text-xs text-[var(--ink-soft)]">
-                    Template: {getTemplateById(doc.templateId)?.name || doc.templateId}
-                  </small>
+                  <span style={{ fontWeight: 700, display: "block" }}>{doc.title}</span>
+                  <small>Template: {getTemplateById(doc.templateId)?.name || doc.templateId}</small>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full ${
-                      doc.status === "Ready"
-                        ? "bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-semibold"
-                        : "bg-neutral-100 dark:bg-neutral-800 text-[var(--ink-soft)]"
-                    }`}
-                  >
-                    {doc.status}
-                  </span>
-                  <small>Updated {doc.updatedAt}</small>
-                </div>
+                <small>
+                  {doc.status} · Updated {doc.updatedAt}
+                </small>
               </button>
             ))}
-            {documents.length === 0 && (
-              <p className="empty-state">No saved documents yet. Start a template with AI above.</p>
-            )}
+            {documents.length === 0 && <p className="empty-state">No saved documents yet.</p>}
           </div>
         </section>
       </section>
 
-      {/* Small Account & Theme Bubble Placed in Left Bottom of Screen */}
+      {/* Small Account and Theme Bubble Placed in Left Bottom of Screen */}
       <AccountBubble
         user={user}
         onSignOut={() => {

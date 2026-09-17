@@ -151,24 +151,46 @@ export function DocumentChat({
   ];
 
   return (
-    <div className="flex flex-col h-full bg-[var(--panel)] border border-[var(--line)] rounded-xl shadow-[var(--shadow)] overflow-hidden">
+    <div className="chat-shell">
       {/* Chat Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--line)] bg-[var(--paper)]">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-[var(--accent)] flex items-center justify-center text-white text-xs font-bold shadow-sm">
+      <div className="chat-header">
+        <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+          <div
+            style={{
+              width: "2rem",
+              height: "2rem",
+              borderRadius: "999px",
+              background: "var(--accent)",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "0.75rem",
+              fontWeight: 800,
+            }}
+          >
             AI
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-sm text-[var(--ink)]">Pre-Legal Legal Assistant</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] font-medium">
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <strong style={{ fontSize: "0.88rem", color: "var(--ink)" }}>Pre-Legal Legal Assistant</strong>
+              <span
+                style={{
+                  fontSize: "0.68rem",
+                  padding: "0.15rem 0.45rem",
+                  borderRadius: "999px",
+                  background: "rgba(23, 107, 90, 0.12)",
+                  color: "var(--accent)",
+                  fontWeight: 700,
+                }}
+              >
                 OpenRouter
               </span>
             </div>
-            <p className="text-xs text-[var(--ink-soft)]">
+            <p style={{ margin: 0, fontSize: "0.75rem", color: "var(--ink-soft)" }}>
               {activeTemplate ? (
                 <>
-                  Drafting: <strong className="text-[var(--ink)]">{activeTemplate.name}</strong>
+                  Drafting: <strong style={{ color: "var(--ink)" }}>{activeTemplate.name}</strong>
                 </>
               ) : (
                 "Free-form conversational drafting"
@@ -180,33 +202,40 @@ export function DocumentChat({
         <button
           type="button"
           onClick={() => setShowSettings(!showSettings)}
-          className="text-xs text-[var(--ink-soft)] hover:text-[var(--ink)] px-2.5 py-1.5 rounded border border-[var(--line)] hover:bg-[var(--panel)] transition flex items-center gap-1.5"
+          className="ghost-action"
+          style={{ padding: "0.35rem 0.65rem", fontSize: "0.75rem" }}
           title="Configure OpenRouter Model & API Key"
         >
-          <span>⚙️</span>
-          <span>{customKey ? "API Key Set" : "Config"}</span>
+          ⚙️ {customKey ? "API Key Set" : "API Config"}
         </button>
       </div>
 
       {/* Optional Settings Panel */}
       {showSettings && (
-        <div className="p-3 border-b border-[var(--line)] bg-neutral-50 dark:bg-neutral-900/60 text-xs space-y-2.5 animate-in fade-in">
-          <div className="flex items-center justify-between">
-            <strong className="text-[var(--ink)] font-semibold">OpenRouter Configuration</strong>
+        <div
+          style={{
+            padding: "0.85rem 1rem",
+            borderBottom: "1px solid var(--line)",
+            background: "var(--paper)",
+            fontSize: "0.78rem",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+            <strong style={{ color: "var(--ink)" }}>OpenRouter Configuration</strong>
             <button
               type="button"
               onClick={() => setShowSettings(false)}
-              className="text-[var(--ink-soft)] hover:text-[var(--ink)]"
+              style={{ background: "transparent", border: 0, cursor: "pointer", color: "var(--ink-soft)" }}
             >
               ✕
             </button>
           </div>
-          <p className="text-[var(--ink-soft)] leading-relaxed">
+          <p style={{ margin: "0 0 0.65rem", color: "var(--ink-soft)", lineHeight: 1.5 }}>
             Enter your OpenRouter API key to power conversational drafting with OpenRouter models (e.g. GPT-4o, Claude 3.5, Gemini, Llama). A smart built-in fallback also operates automatically.
           </p>
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.65rem", marginBottom: "0.65rem" }}>
             <div>
-              <label className="block text-[var(--ink-soft)] font-medium mb-1">
+              <label className="label" style={{ marginTop: 0, marginBottom: "0.25rem" }}>
                 OpenRouter API Key
               </label>
               <input
@@ -214,11 +243,12 @@ export function DocumentChat({
                 placeholder="sk-or-v1-..."
                 value={customKey}
                 onChange={(e) => setCustomKey(e.target.value)}
-                className="w-full px-2.5 py-1.5 rounded border border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] text-xs focus:outline-none focus:border-[var(--accent)]"
+                className="field"
+                style={{ padding: "0.45rem 0.65rem", fontSize: "0.78rem" }}
               />
             </div>
             <div>
-              <label className="block text-[var(--ink-soft)] font-medium mb-1">
+              <label className="label" style={{ marginTop: 0, marginBottom: "0.25rem" }}>
                 Model Identifier
               </label>
               <input
@@ -226,50 +256,61 @@ export function DocumentChat({
                 placeholder="openai/gpt-4o-mini"
                 value={selectedModel}
                 onChange={(e) => setSelectedModel(e.target.value)}
-                className="w-full px-2.5 py-1.5 rounded border border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] text-xs focus:outline-none focus:border-[var(--accent)]"
+                className="field"
+                style={{ padding: "0.45rem 0.65rem", fontSize: "0.78rem" }}
               />
             </div>
           </div>
-          <div className="flex justify-end gap-2">
+          <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.5rem" }}>
             <button
               type="button"
               onClick={saveSettings}
-              className="px-3 py-1 bg-[var(--accent)] text-white rounded text-xs font-semibold hover:bg-[var(--accent-deep)] transition"
+              className="primary-action"
+              style={{ marginTop: 0, width: "auto", padding: "0.4rem 0.85rem", fontSize: "0.78rem" }}
             >
-              Save Key
+              Save Configuration
             </button>
           </div>
         </div>
       )}
 
       {/* Messages List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="chat-messages">
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: msg.role === "user" ? "flex-end" : "flex-start",
+            }}
           >
-            <div
-              className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                msg.role === "user"
-                  ? "bg-[var(--accent)] text-white rounded-br-xs shadow-sm"
-                  : "bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] rounded-bl-xs shadow-xs"
-              }`}
-            >
-              <div className="whitespace-pre-wrap">{msg.content}</div>
+            <div className={`chat-bubble ${msg.role}`}>
+              <div style={{ whiteSpace: "pre-wrap" }}>{msg.content}</div>
 
-              {/* Show populated fields badge if any */}
+              {/* Populated fields tag */}
               {msg.fieldUpdates && Object.keys(msg.fieldUpdates).length > 0 && (
-                <div className="mt-2.5 pt-2 border-t border-[var(--line)]/60 text-xs">
-                  <span className="font-semibold text-[var(--accent)] flex items-center gap-1 mb-1">
-                    <span>⚡ Populated Fields:</span>
+                <div
+                  style={{
+                    marginTop: "0.65rem",
+                    paddingTop: "0.5rem",
+                    borderTop: "1px solid rgba(0, 0, 0, 0.08)",
+                    fontSize: "0.75rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontWeight: 800,
+                      color: msg.role === "user" ? "#fff" : "var(--accent)",
+                      display: "block",
+                      marginBottom: "0.3rem",
+                    }}
+                  >
+                    ⚡ Populated Fields:
                   </span>
-                  <div className="flex flex-wrap gap-1">
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
                     {Object.entries(msg.fieldUpdates).map(([k, v]) => (
-                      <span
-                        key={k}
-                        className="px-2 py-0.5 rounded bg-[var(--accent)]/15 text-[var(--ink)] font-mono text-[11px]"
-                      >
+                      <span key={k} className="field-chip">
                         {k}: <strong>{v}</strong>
                       </span>
                     ))}
@@ -277,9 +318,9 @@ export function DocumentChat({
                 </div>
               )}
 
-              {/* Show suggested template action button if unsupported detected */}
+              {/* Closest template suggestion button */}
               {msg.suggestedTemplateId && (
-                <div className="mt-3 pt-2.5 border-t border-[var(--line)]/60">
+                <div style={{ marginTop: "0.65rem", paddingTop: "0.5rem", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
                   <button
                     type="button"
                     onClick={() => {
@@ -289,37 +330,50 @@ export function DocumentChat({
                         handleSend(`Let's start the ${t.name}.`);
                       }
                     }}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--accent)] text-white text-xs font-semibold hover:bg-[var(--accent-deep)] shadow-sm transition"
+                    className="primary-action"
+                    style={{
+                      width: "auto",
+                      marginTop: "0.25rem",
+                      padding: "0.45rem 0.85rem",
+                      fontSize: "0.75rem",
+                    }}
                   >
-                    <span>Use Closest Template:</span>
+                    Start Closest:{" "}
                     <strong>
-                      {legalTemplates.find((temp) => temp.id === msg.suggestedTemplateId)?.name ||
-                        "Supported Template"}
-                    </strong>
-                    <span>→</span>
+                      {legalTemplates.find((temp) => temp.id === msg.suggestedTemplateId)?.name || "Supported Template"}
+                    </strong>{" "}
+                    →
                   </button>
                 </div>
               )}
             </div>
 
-            <span className="text-[10px] text-[var(--ink-soft)] px-2 mt-1">
+            <span className="chat-bubble-timestamp">
               {msg.role === "user" ? "You" : "Pre-Legal AI"} · {msg.timestamp}
             </span>
           </div>
         ))}
 
         {loading && (
-          <div className="flex items-start gap-2">
-            <div className="w-7 h-7 rounded-full bg-[var(--accent)] flex items-center justify-center text-white text-[11px] font-bold">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 0" }}>
+            <div
+              style={{
+                width: "1.75rem",
+                height: "1.75rem",
+                borderRadius: "999px",
+                background: "var(--accent)",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "0.65rem",
+                fontWeight: 800,
+              }}
+            >
               AI
             </div>
-            <div className="bg-[var(--paper)] text-[var(--ink-soft)] border border-[var(--line)] rounded-2xl rounded-bl-xs px-4 py-3 text-sm flex items-center gap-2">
-              <span className="inline-block animate-pulse">Pre-Legal is thinking…</span>
-              <span className="flex gap-1">
-                <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full animate-bounce"></span>
-                <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full animate-bounce [animation-delay:0.4s]"></span>
-              </span>
+            <div className="chat-bubble assistant" style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>
+              Pre-Legal AI is reviewing details and updating the document…
             </div>
           </div>
         )}
@@ -327,28 +381,28 @@ export function DocumentChat({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Suggested prompts pills */}
-      <div className="px-4 py-2 border-t border-[var(--line)]/50 bg-[var(--paper)]/50 flex gap-1.5 overflow-x-auto no-scrollbar">
+      {/* Suggested quick pills */}
+      <div className="chat-pills">
         {quickPills.map((pill) => (
           <button
             key={pill}
             type="button"
             disabled={loading}
             onClick={() => handleSend(pill)}
-            className="shrink-0 text-xs px-2.5 py-1 rounded-full border border-[var(--line)] bg-[var(--panel)] text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--accent)] transition whitespace-nowrap cursor-pointer"
+            className="chat-pill"
           >
             {pill}
           </button>
         ))}
       </div>
 
-      {/* Input Form */}
+      {/* Chat Input Row */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSend();
         }}
-        className="p-3 border-t border-[var(--line)] bg-[var(--panel)] flex items-center gap-2"
+        className="chat-input-row"
       >
         <input
           type="text"
@@ -356,19 +410,26 @@ export function DocumentChat({
           onChange={(e) => setInput(e.target.value)}
           placeholder={
             activeTemplate
-              ? `Answer about ${activeTemplate.name} fields or instruct the AI...`
-              : "Describe the agreement you need or ask for any document..."
+              ? `Answer about ${activeTemplate.name} or type any instructions...`
+              : "Describe what contract you need or ask any legal question..."
           }
           disabled={loading}
-          className="flex-1 px-3.5 py-2.5 rounded-lg border border-[var(--line)] bg-[var(--paper)] text-[var(--ink)] text-sm focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition"
+          className="field"
+          style={{ padding: "0.65rem 0.85rem", fontSize: "0.85rem" }}
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          className="px-4 py-2.5 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-deep)] disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1 cursor-pointer"
+          className="primary-action"
+          style={{
+            width: "auto",
+            marginTop: 0,
+            padding: "0.65rem 1.15rem",
+            fontSize: "0.85rem",
+            opacity: loading || !input.trim() ? 0.6 : 1,
+          }}
         >
-          <span>Send</span>
-          <span>↑</span>
+          Send ↑
         </button>
       </form>
     </div>
